@@ -73,7 +73,7 @@ Base URL: https://grow-work.herokuapp.com/
 | hebrew          | string | no       |
 | transliteration | string | no       |
 | translation     | string | no       |
-| vocab_level     | string | no       |
+| vocab_level     | number | no       |
 
 ## End Points
 
