@@ -25,4 +25,4 @@ const profileSchema = new mongoose.Schema({
   user_vocab: [vocabSetSchema], // array of vocabLevelSchema
 });
 
-mongoose.model("Profiles", profileSchema);
+mongoose.model("Profile", profileSchema);
