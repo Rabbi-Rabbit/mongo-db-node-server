@@ -57,7 +57,7 @@ Base URL: https://grow-work.herokuapp.com/
 | user_level | number | no       |
 | user_vocab | array  | no       |
 
-### Vocab Set
+### Vocabulary Set
 
 | data        | type   | required |
 | ----------- | ------ | -------- |
@@ -65,7 +65,7 @@ Base URL: https://grow-work.herokuapp.com/
 | next_review | date   | no       |
 | rank        | number | no       |
 
-### Vocab
+### Vocabulary
 
 | data            | type   | required |
 | --------------- | ------ | -------- |
