@@ -5,6 +5,7 @@ const vocabSetSchema = new mongoose.Schema({
     // reference to vocabulary id
     type: mongoose.Schema.Types.ObjectId,
     ref: "Vocabulary",
+    required: true,
   },
   next_review: Date, // date of next review
   rank: Number, // rank of vocab: 0 = copper, 1 = bronze, 2 = silver, 3 = gold, 4 = platinum

@@ -10,13 +10,12 @@ To learn more about the over all project please visit the repos listed below.
 - [Data Structures](#data-structures)
   - [Users](#users)
   - [Profiles](#profiles)
-  - [Jobs](#jobs)
+  - [Vocabulary Set](#vocabulary-set)
+  - [Vocabulary](#vocabulary)
 - [End Points](#end-points)
   - [Authentication Routes](#authentication-routes)
-  - [Newbs Routes](#newbs-routes)
-  - [Companies Routes](#companies-routes)
-  - [Job Listing Routes](#job-listing-routes)
-  - [Account Routes](#account-routes)
+  - [Profile Routes](#profile-routes)
+  - [Vocabulary Routes](#vocabulary-routes)
 - [Instalation and Starting](#instalation-and-starting)
 
 ## Related Repos
@@ -43,74 +42,66 @@ Base URL: https://grow-work.herokuapp.com/
 
 ### Users
 
-| data         | type   | required |
-| ------------ | ------ | -------- |
-| id           | number | yes      |
-| email        | string | yes      |
-| password     | string | yes      |
-| account_type | string | yes      |
+| data     | type   | required |
+| -------- | ------ | -------- |
+| id       | number | yes      |
+| email    | string | yes      |
+| password | string | yes      |
 
 ### Profiles
 
 | data       | type   | required |
 | ---------- | ------ | -------- |
 | user_id    | number | yes      |
-| first_name | string | no       |
-| last_name  | string | no       |
-| location   | string | no       |
-| email      | string | no       |
-| phone      | string | no       |
-| bio        | string | no       |
-| skills     | string | no       |
-| links      | array  | no       |
-| saved_jobs | array  | no       |
+| user_name  | string | yes      |
+| user_level | number | no       |
+| user_vocab | array  | no       |
 
-### Jobs
+### Vocab Set
 
-| data             | type   | required |
-| ---------------- | ------ | -------- |
-| user_id          | number | yes      |
-| title            | string | no       |
-| company          | string | no       |
-| description      | string | no       |
-| compensation     | string | no       |
-| required_skills  | string | no       |
-| preferred_skills | string | no       |
-| location         | string | no       |
-| job_type         | string | no       |
-| apply_link       | string | no       |
+| data        | type   | required |
+| ----------- | ------ | -------- |
+| vocab_id    | number | yes      |
+| next_review | date   | no       |
+| rank        | number | no       |
+
+### Vocab
+
+| data            | type   | required |
+| --------------- | ------ | -------- |
+| vocab_id        | number | yes      |
+| hebrew          | string | no       |
+| transliteration | string | no       |
+| translation     | string | no       |
+| vocab_level     | string | no       |
 
 ## End Points
 
 ### Authentication Routes
 
-| Method | Endpoint       | Token Required | Description                                |
-| ------ | -------------- | -------------- | ------------------------------------------ |
-| POST   | `/auth/signup` | no             | Registers new user and returns token       |
-| POST   | `/auth/signin` | no             | Signs in registered user and returns token |
+| Method | Endpoint       | Token | Description                                |
+| ------ | -------------- | ----- | ------------------------------------------ |
+| POST   | `/auth/signup` | no    | Registers new user and returns token       |
+| POST   | `/auth/signin` | no    | Signs in registered user and returns token |
 
-### Job Listing Routes
+### Vocabulary Routes
 
-| Method | Endpoint                | Token Required | Description                              |
-| ------ | ----------------------- | -------------- | ---------------------------------------- |
-| GET    | `/job-listing`          | yes            | Returns all job postings                 |
-| GET    | `/job-listing/:id`      | yes            | Returns single job listing by id         |
-| POST   | `/job-listing/:id/save` | yes            | Saves single job listing to user profile |
+| Method | Endpoint          | Token | Description                     |
+| ------ | ----------------- | ----- | ------------------------------- |
+| POST   | `/vocab         ` | no    | Creates new vocab word          |
+| GET    | `/vocab`          | no    | Returns all vocabulary          |
+| GET    | `/vocab/:id`      | no    | Returns single vocab word by id |
+| PUT    | `/vocab/:id`      | no    | Updates vocab word by id        |
+| DELETE | `/vocab/:id`      | no    | Deletes vocab word by id        |
 
-### Account Routes
+### Profile Routes
 
-| Method | Endpoint                    | Token Required | Description                                |
-| ------ | --------------------------- | -------------- | ------------------------------------------ |
-| POST   | `/account/profile`          | yes            | Returns newly added company profile        |
-| GET    | `/account/profile`          | yes            | Returns the current user's company profile |
-| PUT    | `/account/profile`          | yes            | Returns the user's newly updated profile   |
-| DELETE | `/account/profile`          | yes            | Deletes the user's profile                 |
-| POST   | `/account/job-listings`     | yes            | Returns newly added job listing            |
-| GET    | `/account/job-listings`     | yes            | Returns the current user's job listings    |
-| GET    | `/account/job-listings/:id` | yes            | Returns single job listing by current user |
-| PUT    | `/account/job-listings/:id` | yes            | Returns user's newly updated job listing   |
-| DELETE | `/account/job-listings/:id` | yes            | Deletes the user's job listing             |
-| DELETE | `/account/saved-job/:id`    | yes            | Deletes the user's saved job listing       |
+| Method | Endpoint   | Token | Description                              |
+| ------ | ---------- | ----- | ---------------------------------------- |
+| POST   | `/profile` | yes   | Returns newly added profile              |
+| GET    | `/profile` | yes   | Returns the current user's profile       |
+| PUT    | `/profile` | yes   | Returns the user's newly updated profile |
+| DELETE | `/profile` | yes   | Deletes the user's profile               |
 
 ## Instalation and Starting
 

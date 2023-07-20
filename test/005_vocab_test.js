@@ -33,7 +33,7 @@ describe("Reading vocab records", () => {
       translation: "mother",
       vocab_level: 1,
     });
-    await testJob2.save();
+    await testVocab2.save();
   });
 
   it("16 - finds added vocab", async () => {
@@ -49,47 +49,41 @@ describe("Reading vocab records", () => {
 
 describe("Updating vocab words", () => {
   beforeEach(async () => {
-    testUser = new User({
-      email: "test@test.com",
-      password: "test",
-      account_type: "company",
+    testVocab = new Vocabulary({
+      hebrew: "אָב",
+      transliteration: "av",
+      translation: "father",
+      vocab_level: 1,
     });
-    await testUser.save();
-
-    testJob = new Job({
-      title: "Full Stack Dev",
-      company: "Grow: Work",
-      userId: testUser._id,
+    await testVocab.save();
+    testVocab2 = new Vocabulary({
+      hebrew: "אֵם",
+      transliteration: "em",
+      translation: "mother",
+      vocab_level: 1,
     });
-    await testJob.save();
-
-    testJob2 = new Job({
-      title: "Front End Dev",
-      company: "Serenity Images",
-      userId: testUser._id,
-    });
-    await testJob2.save();
+    await testVocab2.save();
   });
 
-  it("19a - updates job by id using set n save", async () => {
-    testJob.set("title", "testingupdate");
-    await testJob.save();
-    let job = await Job.findOne({ _id: testJob._id });
-    assert(job.title === "testingupdate");
+  it("19a - updates vocab by id using set n save", async () => {
+    testVocab.set("vocab_level", 2);
+    await testVocab.save();
+    let vocab = await Vocabulary.findOne({ _id: testvocab._id });
+    assert(vocab.vocab_level === 2);
   });
 
-  it("19b - updates job by id", async () => {
-    await Job.updateOne(
-      { _id: testJob._id },
-      { title: "testing update 2", company: "testing update 2.2" }
+  it("19b - updates vocab by id", async () => {
+    await Vocabulary.updateOne(
+      { _id: testvocab._id },
+      { translation: "testing update 2", transliteration: "testing update 2.2" }
     );
-    let job = await Job.findOne({ _id: testJob._id });
-    assert(job.title === "testing update 2");
-    assert(job.company === "testing update 2.2");
+    let Vocabulary = await vocab.findOne({ _id: testvocab._id });
+    assert(vocab.translation === "testing update 2");
+    assert(vocab.transliteration === "testing update 2.2");
   });
 });
 
-describe("Deleting job records", () => {
+describe("Deleting vocab records", () => {
   beforeEach(async () => {
     testVocab = new Vocabulary({
       hebrew: "אָב",
