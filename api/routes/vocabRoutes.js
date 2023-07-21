@@ -21,6 +21,9 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const vocab = await Vocabulary.find();
+    if (!vocab) {
+      return res.status(404).send({ error: "vocab empty" });
+    }
     res.send(vocab);
   } catch (error) {
     res.status(500).send(error.message);
@@ -31,6 +34,9 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const vocab = await Vocabulary.findOne({ _id: req.params.id });
+    if (!vocab) {
+      return res.status(404).send({ error: "vocab not found" });
+    }
     res.send(vocab);
   } catch (error) {
     res.status(500).send(error.message);
@@ -42,6 +48,9 @@ router.put("/:id", async (req, res) => {
   try {
     await Vocabulary.updateOne({ _id: req.params.id }, req.body);
     let updatedVocab = await Vocabulary.findOne({ _id: req.params.id });
+    if (!updatedVocab) {
+      return res.status(404).send({ error: "vocab not found" });
+    }
     res.send(updatedVocab);
   } catch (error) {
     res.status(500).send(error.message);
@@ -52,6 +61,9 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const deleteVocab = await Vocabulary.deleteOne({ _id: req.params.id });
+    if (!deleteVocab) {
+      return res.status(404).send({ error: "vocab not found" });
+    }
     res.send(`${deleteVocab.deletedCount} vocab deleted`);
   } catch (error) {
     res.status(500).send(error.message);

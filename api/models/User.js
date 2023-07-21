@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-// account_type: 0 = professional profile, 1 = company profile
 const userSchema = new mongoose.Schema({
   email: {
     type: String,

@@ -7,7 +7,7 @@ const server = require("./api/server");
 
 const mongoose = require("mongoose");
 
-const URI = process.env.MONGODB_URL;
+const URI = process.env.MONGODB_URL_ALT;
 const PORT = process.env.PORT || 9000;
 
 mongoose.connect(URI, {

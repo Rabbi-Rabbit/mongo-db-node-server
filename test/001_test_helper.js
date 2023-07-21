@@ -4,7 +4,7 @@ require("../api/models/Profile");
 require("../api/models/Vocabulary");
 
 const mongoose = require("mongoose");
-const URI = process.env.MONGODB_URL_TEST;
+const URI = process.env.MONGODB_URL_ALT;
 
 mongoose.Promise = global.Promise;
 

@@ -1,6 +1,6 @@
 const { describe } = require("mocha");
 const mongoose = require("mongoose");
-const Profile = mongoose.model("Profiles");
+const Profile = mongoose.model("Profile");
 const User = mongoose.model("User");
 const assert = require("assert");
 
@@ -41,7 +41,7 @@ describe("Reading user profile records", () => {
 
   it("11 - finds user profile by userId", async () => {
     let profile = await Profile.findOne({ userId: testUser._id });
-    assert(profile.first_name === "Test");
+    assert(profile.user_name === "Nunya");
   });
 });
 
@@ -62,9 +62,9 @@ describe("Updating user profile records", () => {
   });
 
   it("12 - updates user profile by userId", async () => {
-    let profile = await Profyile.findOne({ userId: testUser._id });
+    let profile = await Profile.findOne({ userId: testUser._id });
     //upate record here
-    assert(profile.first_name === "Test");
+    assert(profile.user_name === "Nunya");
   });
 });
 
@@ -75,21 +75,20 @@ describe("Deleting users records", () => {
     testUser = new User({
       email: "test@test.com",
       password: "test",
-      account_type: "test",
     });
     await testUser.save();
 
-    testProfile = new Professional({
-      first_name: "Nunya",
-      location: "Kansas CIty, KS, USA",
+    testProfile = new Profile({
+      user_name: "Nunya",
+      user_level: 1,
       userId: testUser._id,
     });
     await testProfile.save();
   });
 
   it("14 - deletes user profile by id", async () => {
-    let profile = await Professional.deleteOne({ userId: testUser._id });
-    let profiles = await Professional.find();
+    let profile = await Profile.deleteOne({ userId: testUser._id });
+    let profiles = await Profile.findOne({ userId: testUser._id });
     assert(profile.deletedCount === 1);
     assert(profiles.length === 0);
   });
