@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const User = mongoose.model("User");
 const secret = process.env.JWT_SECRET;
 
-router.post("/signup", async (req, res) => {
+router.post("/register", async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -12,7 +12,7 @@ router.post("/signup", async (req, res) => {
   }
 
   try {
-    const user = new User({ email, password });
+    const user = new User(req.body);
     await user.save();
 
     const token = jwt.sign({ userId: user._id }, secret);
@@ -22,7 +22,7 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-router.post("/signin", async (req, res) => {
+router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -31,7 +31,7 @@ router.post("/signin", async (req, res) => {
 
   const user = await User.findOne({ email });
   if (!user) {
-    return res.status(404).send({ error: "not found" });
+    return res.status(404).send({ error: "user not found" });
   }
 
   try {

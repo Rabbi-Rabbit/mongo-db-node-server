@@ -1,29 +1,16 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
-const Profile = mongoose.model("Profile");
+const User = mongoose.model("User");
 const requireAuth = require("../middleware/requireAuth");
 
 router.use(requireAuth);
 
 //profile CRUD routes
 
-//create:
-router.post("/", async (req, res) => {
-  const reqBody = { ...req.body, userId: req.user._id };
-
-  try {
-    const profile = new Profile(reqBody);
-    await profile.save();
-    res.send(profile);
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
-});
-
 //read:
 router.get("/", async (req, res) => {
   try {
-    const currentProfile = await Profile.findOne({ userId: req.user._id });
+    const currentProfile = await User.findOne({ _id: req.user._id });
     if (!currentProfile) {
       return res.status(404).send({ error: "profile not found" });
     }
@@ -36,8 +23,8 @@ router.get("/", async (req, res) => {
 //update:
 router.put("/", async (req, res) => {
   try {
-    await Profile.updateOne({ userId: req.user._id }, req.body);
-    let updatedProfile = await Profile.findOne({ userId: req.user._id });
+    await User.updateOne({ _id: req.user._id }, req.body);
+    let updatedProfile = await User.findOne({ userId: req.user._id });
     if (!updatedProfile) {
       return res.status(404).send({ error: "profile not found" });
     }
@@ -50,7 +37,7 @@ router.put("/", async (req, res) => {
 //delete:
 router.delete("/", async (req, res) => {
   try {
-    const deleteProfile = await Profile.deleteOne({ userId: req.user._id });
+    const deleteProfile = await User.deleteOne({ _id: req.user._id });
     if (!deleteProfile) {
       return res.status(404).send({ error: "profile not found" });
     }
