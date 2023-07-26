@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
   },
   user_level: Number,
   next_lesson: Number,
-  user_lessons: [vocabSetSchema], // array of vocab_id
+  user_lessons: [String], // array of vocab_id
   user_vocab: [vocabSetSchema], // array of vocabLevelSchema
 });
 

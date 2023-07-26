@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
 router.put("/", async (req, res) => {
   try {
     await User.updateOne({ _id: req.user._id }, req.body);
-    let updatedProfile = await User.findOne({ userId: req.user._id });
+    let updatedProfile = await User.findOne({ _id: req.user._id });
     if (!updatedProfile) {
       return res.status(404).send({ error: "profile not found" });
     }
