@@ -30,7 +30,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-//read:
 // router.get("/:id", async (req, res) => {
 //   try {
 //     const vocab = await Vocabulary.findOne({ _id: req.params.id });
