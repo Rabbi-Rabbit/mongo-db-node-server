@@ -31,17 +31,17 @@ router.get("/", async (req, res) => {
 });
 
 //read:
-router.get("/:id", async (req, res) => {
-  try {
-    const vocab = await Vocabulary.findOne({ _id: req.params.id });
-    if (!vocab) {
-      return res.status(404).send({ error: "vocab not found" });
-    }
-    res.send(vocab);
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
-});
+// router.get("/:id", async (req, res) => {
+//   try {
+//     const vocab = await Vocabulary.findOne({ _id: req.params.id });
+//     if (!vocab) {
+//       return res.status(404).send({ error: "vocab not found" });
+//     }
+//     res.send(vocab);
+//   } catch (error) {
+//     res.status(500).send(error.message);
+//   }
+// });
 
 //update by id:
 router.put("/:id", async (req, res) => {
