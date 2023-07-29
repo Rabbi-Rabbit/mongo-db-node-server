@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
   try {
     const vocab = new Vocabulary(reqBody);
     await vocab.save();
-    res.send(vocab);
+    // res.send(vocab);
   } catch (error) {
     res.status(500).send(error.message);
   }

@@ -9,6 +9,7 @@ const vocabSetSchema = new mongoose.Schema({
     required: true,
   },
   next_review: Date, // date of next review
+  lesson_number: Number, // lesson number
   rank: Number, // rank of vocab: 0 = copper, 1 = bronze, 2 = silver, 3 = gold, 4 = platinum
 });
 
@@ -26,8 +27,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  user_level: Number,
-  next_lesson: Number,
+  available_lesson: Number,
   user_lessons: [String], // array of vocab_id
   user_vocab: [vocabSetSchema], // array of vocabLevelSchema
 });
