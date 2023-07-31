@@ -23,10 +23,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  user_name: {
-    type: String,
-    required: true,
-  },
   available_lesson: Number,
   user_lessons: [String], // array of vocab_id
   user_vocab: [vocabSetSchema], // array of vocabLevelSchema
