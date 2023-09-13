@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
 const User = mongoose.model("User");
+const jwt = require("jsonwebtoken");
 const secret = process.env.JWT_SECRET;
 
 router.post("/register", async (req, res) => {
@@ -9,6 +9,12 @@ router.post("/register", async (req, res) => {
 
   if (!email || !password) {
     return res.status(422).send({ error: "email and password are required" });
+  }
+
+  const user = await User.findOne({ email });
+
+  if (user) {
+    return res.status(500).json({ message: "email in use" });
   }
 
   try {
@@ -30,16 +36,13 @@ router.post("/login", async (req, res) => {
   }
 
   const user = await User.findOne({ email });
-  if (!user) {
-    return res.status(404).send({ error: "user not found" });
-  }
 
   try {
     await user.comparePassword(password);
     const token = jwt.sign({ userId: user._id }, secret);
     res.send({ token });
   } catch (err) {
-    return res.status(401).send(err.message);
+    return res.status(401).send({ error: "invalid email or password" });
   }
 });
 
