@@ -58,7 +58,7 @@ router.put("/password-reset", async (req, res) => {
   if (!email || !pin || !password) {
     return res
       .status(422)
-      .send({ error: "email, pin, and password are required" });
+      .send({ message: "email, pin, and password are required" });
   }
   const user = await User.findOne({ email });
   const userPin = await UserPin.findOne({ email });
@@ -67,7 +67,7 @@ router.put("/password-reset", async (req, res) => {
     return res.status(500).json({ message: "email not found" });
   }
   if (userPin.pin !== pin) {
-    return res.status(500).json({ message: "pin is incorrect" });
+    return res.status(500).json({ message: "pin is incorrect or expired" });
   }
   try {
     user.password = password;
