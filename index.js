@@ -1,6 +1,7 @@
 require("dotenv").config();
 require("./api/models/User");
 require("./api/models/Vocabulary");
+require("./api/models/UserPins");
 
 const server = require("./api/server");
 
