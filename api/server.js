@@ -4,6 +4,7 @@ const cors = require("cors");
 const authRouter = require("./routes/authRoutes");
 const vocabRouter = require("./routes/vocabRoutes");
 const profileRouter = require("./routes/profileRoutes");
+const emailRouter = require("./routes/emailRoutes");
 
 const server = express();
 
@@ -13,6 +14,7 @@ server.use(cors());
 server.use("/auth", authRouter);
 server.use("/vocab", vocabRouter);
 server.use("/profile", profileRouter);
+server.use("/email", emailRouter);
 
 server.use((err, req, res, next) => {
   // eslint-disable-line
