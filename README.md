@@ -1,6 +1,11 @@
 # Rabbi-Rabbit - Backend
 
-To learn more about the over all project please visit the repos listed below.
+![Node.js](https://img.shields.io/badge/Node.js-16.x-green?logo=node.js)
+![MongoDB](https://img.shields.io/badge/MongoDB-%2332BA7C?logo=mongodb&logoColor=white)
+![Express](https://img.shields.io/badge/Express.js-%23000000?logo=express)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
+To learn more about the overall project, please visit the repos listed below.
 
 ## Quicklinks
 
@@ -11,35 +16,36 @@ To learn more about the over all project please visit the repos listed below.
   - [User Pins](#user-pins)
   - [Vocabulary Set](#vocabulary-set)
   - [Vocabulary](#vocabulary)
-- [End Points](#end-points)
+- [Endpoints](#endpoints)
   - [Authentication Routes](#authentication-routes)
   - [Profile Routes](#profile-routes)
   - [Vocabulary Routes](#vocabulary-routes)
   - [Email Routes](#email-routes)
-- [Instalation and Starting](#instalation-and-starting)
+- [Installation and Starting](#installation-and-starting)
+
+---
 
 ## Related Repos
 
-[Desktop Web App](https://github.com/Rabbi-Rabbit/frontend-react-desktop)
+- [Desktop Web App](https://github.com/Rabbi-Rabbit/frontend-react-desktop)
+- [Native Mobile App](https://github.com/Rabbi-Rabbit/react-native-mobile-app)
 
-[Native Mobile App](https://github.com/Rabbi-Rabbit/react-native-mobile-app)
-
+---
 
 ## Tech Stack
 
 - MongoDB / Mongoose
-
-- Node / Express / REST api
-
-- Json webtokens
-
+- Node / Express / REST API
+- JSON Web Tokens (JWT)
 - Tests with Mocha (coming soon)
+
+---
 
 ## Data Structures
 
 ### User
 
-| data             | type        | required  |
+| Data             | Type        | Required  |
 | ---------------- | ----------- | --------- |
 | _id              | number      | generated |
 | email            | string      | yes       |
@@ -50,15 +56,15 @@ To learn more about the over all project please visit the repos listed below.
 
 ### User Pins
 
-| data             | type     | required  |
-| ---------------- | -------- | --------- |
-| email            | string   | yes       |
-| pin              | string   | yes       |
-| expireAt         | date     | generated |
+| Data     | Type   | Required  |
+| -------- | ------ | --------- |
+| email    | string | yes       |
+| pin      | string | yes       |
+| expireAt | date   | generated |
 
 ### Vocabulary Set
 
-| data          | type     | required |
+| Data          | Type     | Required |
 | ------------- | -------- | -------- |
 | vocab_id      | ObjectId | yes      |
 | next_review   | date     | no       |
@@ -67,7 +73,7 @@ To learn more about the over all project please visit the repos listed below.
 
 ### Vocabulary
 
-| data               | type   | required  |
+| Data               | Type   | Required  |
 | ------------------ | ------ | --------- |
 | _id                | number | generated |
 | hebrew             | string | no        |
@@ -77,7 +83,9 @@ To learn more about the over all project please visit the repos listed below.
 | lesson             | number | no        |
 | gender             | string | no        |
 
-## End Points
+---
+
+## Endpoints
 
 ### Authentication Routes
 
@@ -87,23 +95,23 @@ To learn more about the over all project please visit the repos listed below.
 | POST   | `/auth/signin`         | no    | Signs in registered user and returns token        |
 | PUT    | `/auth/password-reset` | no    | Verifies email and pin then updates user password |
 
-### Vocabulary Routes
-
-| Method | Endpoint          | Token | Description                     |
-| ------ | ----------------- | ----- | ------------------------------- |
-| POST   | `/vocab         ` | no    | Creates new vocab word          |
-| GET    | `/vocab`          | no    | Returns all vocabulary          |
-| GET    | `/vocab/:id`      | no    | Returns single vocab word by id |
-| PUT    | `/vocab/:id`      | no    | Updates vocab word by id        |
-| DELETE | `/vocab/:id`      | no    | Deletes vocab word by id        |
-
 ### Profile Routes
 
 | Method | Endpoint   | Token | Description                              |
 | ------ | ---------- | ----- | ---------------------------------------- |
 | GET    | `/profile` | yes   | Returns the current user's profile       |
-| PUT    | `/profile` | yes   | Returns the user's newly updated profile |
+| PUT    | `/profile` | yes   | Updates the user's profile               |
 | DELETE | `/profile` | yes   | Deletes the user's profile               |
+
+### Vocabulary Routes
+
+| Method | Endpoint     | Token | Description                     |
+| ------ | ------------ | ----- | ------------------------------- |
+| POST   | `/vocab`     | no    | Creates new vocab word          |
+| GET    | `/vocab`     | no    | Returns all vocabulary          |
+| GET    | `/vocab/:id` | no    | Returns single vocab word by id |
+| PUT    | `/vocab/:id` | no    | Updates vocab word by id        |
+| DELETE | `/vocab/:id` | no    | Deletes vocab word by id        |
 
 ### Email Routes
 
@@ -111,19 +119,24 @@ To learn more about the over all project please visit the repos listed below.
 | ------ | -------- | ----- | ---------------------------------------------------------- |
 | POST   | `/email` | no    | Creates random pin, saves to userPins, sends email to user |
 
-## Instalation and Starting
+---
 
-• Npm i - install dependencies
+## Installation and Starting
 
-• Npm start - run app with node
+```bash
+npm install        # Install dependencies
+npm start          # Run app with Node
+npm run server     # Run app with nodemon
+npm run test       # Run tests with Mocha (coming soon)
+```
 
-• Npm run server - rup app with nodemon
+### Required .env File
 
-• Npm run test - runs tests with mocha
+Create your own `.env` file in the root directory with the following keys:
 
-• You'll need to create your own .env file with:
-
-MONGODB_URL={your_key_here}<br>
+```env
+MONGODB_URL={your_key_here}
 JWT_SECRET={your_secret_here}
 EMAIL={your_email_here}
 PASSWORD={your_password_here}
+```
