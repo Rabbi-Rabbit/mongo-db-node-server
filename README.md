@@ -28,7 +28,6 @@ To learn more about the overall project, please visit the repos listed below.
 ## Related Repos
 
 - [Desktop Web App](https://github.com/Rabbi-Rabbit/frontend-react-desktop)
-- [Native Mobile App](https://github.com/Rabbi-Rabbit/react-native-mobile-app)
 
 ---
 
@@ -37,7 +36,6 @@ To learn more about the overall project, please visit the repos listed below.
 - MongoDB / Mongoose
 - Node / Express / REST API
 - JSON Web Tokens (JWT)
-- Tests with Mocha (coming soon)
 
 ---
 
